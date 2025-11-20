@@ -53,7 +53,7 @@ lib/
 
 ### Prerequisites
 - Flutter SDK `>= 3.3.3`
-- An Emulator
+- An Android Emulator
 
 ### Install Dependencies
 ```sh

@@ -66,14 +66,10 @@ flutter pub get
 flutter run        
 ```
 
-### Run Tests
-```sh
-flutter test
-```
-
 ---
 
 ## Troubleshooting & Tips
+- Restart and Reload
 - If Flutter can’t find a device, run `flutter doctor -v` and resolve the reported issues.
 - Delete the `smart_expense.db` file (simulator/emulator data directory) if you need a clean slate during development.
 - For release builds, update `pubspec.yaml` metadata (`name`, `description`) and platform-specific bundle identifiers.

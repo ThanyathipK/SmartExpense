@@ -57,7 +57,7 @@ lib/
 
 ### Install Dependencies
 ```sh
-Clone this git repo 
+Clone [this git repo](https://github.com/ThanyathipK/SmartExpense.git) 
 flutter pub get
 ```
 

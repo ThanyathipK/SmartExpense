@@ -53,20 +53,17 @@ lib/
 
 ### Prerequisites
 - Flutter SDK `>= 3.3.3`
-- Xcode (for iOS/macOS), Android Studio or command-line tools (for Android), or Chrome (for web)
-- A device or emulator/simulator
+- An Emulator
 
 ### Install Dependencies
 ```sh
-cd /Users/thanyathip/SmartExpense
+Clone this git repo 
 flutter pub get
 ```
 
-### Run the App
+### Run the App (Use Adroid Emulator ONLY)
 ```sh
-flutter run            # Auto-detects a connected device
-flutter run -d macos   # macOS desktop
-flutter run -d chrome  # Web
+flutter run        
 ```
 
 ### Run Tests
@@ -76,68 +73,8 @@ flutter test
 
 ---
 
-## Local Database
-
-SmartExpense initializes its schema the first time the app runs:
-
-```41:101:lib/services/database_helper.dart
-Future _createDB(Database db, int version) async {
-  await db.execute('CREATE TABLE accounts (...)');
-  await db.execute('CREATE TABLE transactions (...)');
-  await _createAdvancedTables(db);
-  await db.insert('accounts', {'name': 'Cash', 'initial_balance': 0});
-  await db.insert('accounts', {'name': 'Bank', 'initial_balance': 0});
-}
-
-Future _createAdvancedTables(Database db) async {
-  await db.execute('CREATE TABLE IF NOT EXISTS budgets (...)');
-  await db.execute('CREATE TABLE IF NOT EXISTS recurring_transactions (...)');
-}
-```
-
-All reads/writes go through `DatabaseHelper`, which exposes a `ValueNotifier` so screens refresh whenever data changes.
-
----
-
-## Recurring Transactions Automation
-
-On launch, due recurring entries are converted into concrete transactions before the UI loads:
-
-```9:47:lib/main.dart
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseHelper.instance.database;
-  await _processRecurringTransactions();
-  runApp(const SmartExpenseApp());
-}
-
-Future<void> _processRecurringTransactions() async {
-  final dueTransactions = await dbHelper.getDueRecurringTransactions(today);
-  for (var tx in dueTransactions) {
-    await dbHelper.insertTransaction(newTransaction);
-    await dbHelper.updateRecurringTransactionNextDate(tx.id!, nextDate);
-  }
-}
-```
-
-This keeps monthly bills or subscriptions up to date even if the app was closed for a while.
-
----
-
 ## Troubleshooting & Tips
 - If Flutter can’t find a device, run `flutter doctor -v` and resolve the reported issues.
 - Delete the `smart_expense.db` file (simulator/emulator data directory) if you need a clean slate during development.
 - For release builds, update `pubspec.yaml` metadata (`name`, `description`) and platform-specific bundle identifiers.
 
----
-
-## Roadmap Ideas
-- CSV export/import using the existing `csv` + `path_provider` dependencies.
-- Budget views for daily/weekly/yearly tabs (currently placeholders).
-- Editable categories and richer recurring transaction forms.
-- Secure backups (cloud sync or encrypted local export).
-
----
-
-## License
-Add your preferred license (e.g., MIT, Apache 2.0) here.

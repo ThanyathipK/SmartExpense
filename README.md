@@ -60,7 +60,7 @@ Clone [this git repo](https://github.com/ThanyathipK/SmartExpense.git)
 flutter pub get
 ```
 
-### Run the App (Use Adroid Emulator ONLY)
+### Run the App (Use Android Emulator ONLY)
 ```sh
 flutter run        
 ```

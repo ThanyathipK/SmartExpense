@@ -9,7 +9,6 @@ SmartExpense is an offline-first personal finance tracker built with Flutter. It
 - **Quick transaction entry** – configurable categories, account picker, custom numpad, and edit flow.
 - **Account insights** – per-account balance cards, income/expense split, and historical transactions.
 - **Budget tracking** – monthly category budgets with color-coded progress bars and edit dialogs.
-- **Recurring automation** – due recurring items become real transactions when the app starts.
 - **Visual reports** – FL Chart-based pie charts for daily/weekly/monthly/yearly spending.
 - **Offline data** – powered by a local SQLite database via `sqflite`, so everything works without connectivity.
 
